@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-class SystemRezerwacji {
+class SystemRezerwacji extends Exception {
     private List<Lot> listaLotów;
     private List<Klient> listaKlientów;
     private List<Rezerwacja> listaRezerwacji;
