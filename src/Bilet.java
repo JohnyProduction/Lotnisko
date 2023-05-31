@@ -15,7 +15,6 @@ public abstract class Bilet {
     }
 
     public String getNumerBiletu() {
-
         return numerBiletu;
     }
     public double getCena() {
@@ -23,12 +22,10 @@ public abstract class Bilet {
     }
 
     public boolean czyZarezerwowany() {
-
         return czyZarezerwowany;
     }
 
     public void zarezerwuj() {
-
         this.czyZarezerwowany = true;
     }
 
@@ -47,15 +44,39 @@ public abstract class Bilet {
 }
 
 class KlasaEkonomiczna extends Bilet {
-    public KlasaEkonomiczna() {
-        super();
+    private String miejsce;
+
+    public KlasaEkonomiczna(String numerBiletu, double cena, String miejsce) {
+        super(numerBiletu, cena);
+        this.miejsce = miejsce;
     }
-    // Dodatkowe pola i metody dla biletów klasy ekonomicznej
+
+    public String getMiejsce() {
+        return miejsce;
+    }
+
+    public void setMiejsce(String miejsce) {
+        this.miejsce = miejsce;
+    }
+
+    // Dodatkowe metody dla biletów klasy ekonomicznej
 }
 
 class KlasaBiznesowa extends Bilet {
-    public KlasaBiznesowa() {
-        super();
+    private int numerSiedzenia;
+
+    public KlasaBiznesowa(String numerBiletu, double cena, int numerSiedzenia) {
+        super(numerBiletu, cena);
+        this.numerSiedzenia = numerSiedzenia;
     }
-    // Dodatkowe pola i metody dla biletów klasy biznesowej
+
+    public int getNumerSiedzenia() {
+        return numerSiedzenia;
+    }
+
+    public void setNumerSiedzenia(int numerSiedzenia) {
+        this.numerSiedzenia = numerSiedzenia;
+    }
+
+    // Dodatkowe metody dla biletów klasy biznesowej
 }
