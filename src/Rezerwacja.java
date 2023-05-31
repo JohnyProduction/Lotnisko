@@ -29,14 +29,17 @@ public class Rezerwacja {
                 "\nzarezerwowaneMiejsce: " + zarezerwowaneMiejsce;
     }
 }
+// Wyjątek przy próbie zarezerwowania już zajętego miejsca
 class RezerwacjaException extends Exception {
-    public RezerwacjaException(String s) {
+    public RezerwacjaException(String message) {
+        super(message);
     }
-    // Wyjątek przy próbie zarezerwowania już zajętego miejsca
-}
 
-class UsunięcieRezerwacjiException extends Exception {
-    public UsunięcieRezerwacjiException(String s) {
+}
+// Wyjątek przy próbie usunięcia nieistniejącej rezerwacji
+class UsuniecieRezerwacjiException extends Exception {
+    public UsuniecieRezerwacjiException(String message) {
+        super(message);
     }
-    // Wyjątek przy próbie usunięcia nieistniejącej rezerwacji
+
 }

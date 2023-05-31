@@ -11,6 +11,23 @@ public class Klient implements Drukowalny {
         this.adres = adres;
         this.numerTelefonu = numerTelefonu;
     }
+
+    public String getImie() {
+        return imie;
+    }
+
+    public String getNazwisko() {
+        return nazwisko;
+    }
+
+    public String getAdres() {
+        return adres;
+    }
+
+    public String getNumerTelefonu() {
+        return numerTelefonu;
+    }
+
     @Override
     public void drukuj(){
         System.out.println("Klient :");

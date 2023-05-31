@@ -6,7 +6,7 @@ public class Lot {
     private String data;
     private String godzina;
     private double cena;
-    private List<Miejsce> dostępneMiejsca;
+    private List<Miejsce> dostepneMiejsca;
 
     // Konstruktor, metody dostępowe itp.
     public Lot (String miejsceWylotu, String miejscePrzylotu, String data, String godzina, double cena){
@@ -15,10 +15,32 @@ public class Lot {
         this.data = data;
         this.godzina = godzina;
         this.cena = cena;
-        this.dostępneMiejsca = new ArrayList<>();
+        this.dostepneMiejsca = new ArrayList<>();
     }
-    public List<Miejsce> getDostępneMiejsca() {
-        return dostępneMiejsca;
+
+    public String getMiejsceWylotu() {
+        return miejsceWylotu;
+    }
+
+    public String getMiejscePrzylotu() {
+        return miejscePrzylotu;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public String getGodzina() {
+        return godzina;
+    }
+
+    public double getCena() {
+        return cena;
+    }
+
+    public List<Miejsce> getDostepneMiejsca() {
+
+        return dostepneMiejsca;
     }
     public String toString(){
         return "Miejsce wylotu: " +miejsceWylotu+

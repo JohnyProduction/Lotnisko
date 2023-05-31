@@ -2,16 +2,16 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 class SystemRezerwacji extends Exception {
-    private List<Lot> listaLotów;
-    private List<Klient> listaKlientów;
+    private List<Lot> listaLotow;
+    private List<Klient> listaKlientow;
     private List<Rezerwacja> listaRezerwacji;
 
     // Metody związane z obsługą plików
 
-    public void zapiszListęLotów(String nazwaPliku) {
+    public void zapiszListeLotow(String nazwaPliku) {
         try {
             FileWriter writer = new FileWriter(nazwaPliku);
-            for (Lot lot : listaLotów) {
+            for (Lot lot : listaLotow) {
                 writer.write(lot.toString());
                 writer.write("\n");
             }
@@ -21,7 +21,7 @@ class SystemRezerwacji extends Exception {
         }
     }
 
-    public void odczytajListęLotów(String nazwaPliku) {
+    public void odczytajListeLotow(String nazwaPliku) {
         try {
             FileReader reader = new FileReader(nazwaPliku);
             BufferedReader bufferedReader = new BufferedReader(reader);
@@ -38,36 +38,36 @@ class SystemRezerwacji extends Exception {
     // Metody obsługujące rezerwacje
 
     public void zarezerwujLot(Lot lot, Klient klient, Miejsce miejsce) throws RezerwacjaException {
-        if (!lot.getDostępneMiejsca().contains(miejsce)) {
+        if (!lot.getDostepneMiejsca().contains(miejsce)) {
             throw new RezerwacjaException("To miejsce jest już zarezerwowane.");
         }
         Rezerwacja rezerwacja = new Rezerwacja(lot, klient, miejsce);
         listaRezerwacji.add(rezerwacja);
-        lot.getDostępneMiejsca().remove(miejsce);
+        lot.getDostepneMiejsca().remove(miejsce);
     }
 
-    public void usuńRezerwację(Rezerwacja rezerwacja) throws UsunięcieRezerwacjiException {
+    public void usunRezerwacje(Rezerwacja rezerwacja) throws UsuniecieRezerwacjiException {
         if (!listaRezerwacji.contains(rezerwacja)) {
-            throw new UsunięcieRezerwacjiException("Podana rezerwacja nie istnieje.");
+            throw new UsuniecieRezerwacjiException("Podana rezerwacja nie istnieje.");
         }
         listaRezerwacji.remove(rezerwacja);
-        rezerwacja.getLot().getDostępneMiejsca().add(rezerwacja.getZarezerwowaneMiejsce());
+        rezerwacja.getLot().getDostepneMiejsca().add(rezerwacja.getZarezerwowaneMiejsce());
     }
 
     // Metody wyświetlające listy dostępnych lotów i typów biletów z wykorzystaniem polimorfizmu
 
-    public void wyświetlDostępneLoty() {
-        for (Lot lot : listaLotów) {
+    public void wyswietlDostępneLoty() {
+        for (Lot lot : listaLotow) {
             System.out.println(lot.toString());
         }
     }
 
-    public void wyświetlDostępneTypyBiletów() {
-        List<Bilet> listaBiletów = new ArrayList<>();
-        listaBiletów.add(new KlasaEkonomiczna());
-        listaBiletów.add(new KlasaBiznesowa());
+    public void wyswietlDostępneTypyBiletow() {
+        List<Bilet> listaBiletow = new ArrayList<>();
+        listaBiletow.add(new KlasaEkonomiczna());
+        listaBiletow.add(new KlasaBiznesowa());
 
-        for (Bilet bilet : listaBiletów) {
+        for (Bilet bilet : listaBiletow) {
             System.out.println(bilet.toString());
         }
     }

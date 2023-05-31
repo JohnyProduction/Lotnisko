@@ -15,18 +15,20 @@ public abstract class Bilet {
     }
 
     public String getNumerBiletu() {
+
         return numerBiletu;
     }
-
     public double getCena() {
         return cena;
     }
 
     public boolean czyZarezerwowany() {
+
         return czyZarezerwowany;
     }
 
     public void zarezerwuj() {
+
         this.czyZarezerwowany = true;
     }
 
