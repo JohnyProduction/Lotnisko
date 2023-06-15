@@ -17,10 +17,10 @@ class SystemRezerwacji extends Exception {
      *
      * @param nazwaPliku Nazwa pliku do którego mają być zapisane loty.
      */
-    public void zapiszListeLotow(String nazwaPliku) {
+    public void zapiszListeLotow(String nazwaPliku, ArrayList<Lot> dostepneLoty) {
         try {
             FileWriter writer = new FileWriter(nazwaPliku);
-            for (Lot lot : bilety.values().stream().distinct().toList()) {
+            for (Lot lot : dostepneLoty.stream().distinct().toList()) {
                 writer.write(lot.toString());
                 writer.write("\n");
             }
@@ -78,8 +78,8 @@ class SystemRezerwacji extends Exception {
     /**
      * Wyświetla informacje o wszystkich biletach w systemie.
      */
-    public void wyswietlBilety() {
-        for (Bilet bilet : bilety.keySet()) {
+    public void wyswietlBilety(List<Optional<Bilet>> bilety) {
+        for (Optional<Bilet> bilet : bilety.stream().distinct().toList()) {
             System.out.println(bilet.toString());
         }
     }
@@ -103,8 +103,8 @@ class SystemRezerwacji extends Exception {
      * Wyświetla dostępne loty.
      * Drukuje informacje o każdym unikalnym locie obecnym w rekordach rezerwacji.
      */
-    public void wyswietlDostępneLoty() {
-        for (Lot lot : bilety.values().stream().distinct().toList()) {
+    public void wyswietlDostępneLoty( ArrayList<Lot> dostepneLoty) {
+        for (Lot lot : dostepneLoty.stream().distinct().toList()) {
             System.out.println(lot.toString());
         }
     }
