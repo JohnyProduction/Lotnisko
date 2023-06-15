@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Klasa reprezentująca loty
  */
-public class Lot implements ISerializowalne{
+public class Lot implements ISerializowalne, Serializable {
     private int idLotu;
     private String miejsceWylotu;
     private String miejscePrzylotu;

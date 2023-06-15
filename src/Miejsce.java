@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Klasa reprezentująca Miejsce
  */
-public class Miejsce implements ISerializowalne{
+public class Miejsce implements ISerializowalne, Serializable {
     private int numer;
     private int rzad;
 

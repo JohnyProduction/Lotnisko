@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Klasa reprezentująca Rezerwację
  */
-public class Rezerwacja {
+public class Rezerwacja implements Serializable {
     private Lot lot;
     private Klient klient;
     private Miejsce zarezerwowaneMiejsce;

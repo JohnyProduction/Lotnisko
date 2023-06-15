@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.Optional;
 
 /**
  * Klasa reprezentująca druk biletu
  */
 
-public class DrukBILET implements Drukowalny{
+public class DrukBILET implements Drukowalny, Serializable {
     private Miejsce miejsce;
     private Lot lot;
     private Optional<Bilet> bilet;

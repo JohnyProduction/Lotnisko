@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * Klasa reprezentująca System rezerwacji
  */
-class SystemRezerwacji extends Exception {
+class SystemRezerwacji extends Exception implements Serializable {
     private Map<Bilet,Lot> bilety;
     /**
      * Konstruktor klasy SystemRezerwacji.

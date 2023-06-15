@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Abstrakcyjna klasa reprezentująca bilet.
  */
-public abstract class Bilet {
+public abstract class Bilet implements Serializable { // zaimplementowane Serializable będzie dziedziczone
     // Pola wspólne dla wszystkich rodzajów biletów
     private UUID numerBiletu;
     private double cena;
