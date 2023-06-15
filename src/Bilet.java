@@ -1,82 +1,134 @@
+import java.util.UUID;
+
+/**
+ * Abstrakcyjna klasa reprezentująca bilet.
+ */
 public abstract class Bilet {
     // Pola wspólne dla wszystkich rodzajów biletów
-    private String numerBiletu;
+    private UUID numerBiletu;
     private double cena;
-    private boolean czyZarezerwowany;
+    private Miejsce miejsce;
 
-    public Bilet(String numerBiletu, double cena) {
+    /**
+     * Konstruktor klasy Bilet.
+     *
+     * @param numerBiletu numer biletu
+     * @param cena        cena biletu
+     */
+    public Bilet(UUID numerBiletu, double cena, Miejsce miejsce) {
         this.numerBiletu = numerBiletu;
         this.cena = cena;
-        this.czyZarezerwowany = false;
+        this.miejsce = miejsce;
     }
 
-    public Bilet() {
-        super();
-    }
-
-    public String getNumerBiletu() {
+    /**
+     * Pobiera numer biletu.
+     *
+     * @return numer biletu
+     */
+    public UUID getNumerBiletu() {
         return numerBiletu;
     }
+
+    /**
+     * Pobiera cenę biletu.
+     *
+     * @return cena biletu
+     */
     public double getCena() {
         return cena;
     }
+    public Miejsce getMiejsce(){
+        return  miejsce;
+    }
+}
 
-    public boolean czyZarezerwowany() {
-        return czyZarezerwowany;
+/**
+ * Klasa reprezentująca bilet klasy ekonomicznej.
+ */
+class KlasaEkonomiczna extends Bilet implements ISerializowalne {
+
+    /**
+     * Konstruktor klasy KlasaEkonomiczna.
+     *
+     * @param numerBiletu numer biletu
+     * @param cena        cena biletu
+
+     */
+    public KlasaEkonomiczna(UUID numerBiletu, double cena, Miejsce miejsce) {
+        super(numerBiletu, cena,miejsce);
+
     }
 
-    public void zarezerwuj() {
-        this.czyZarezerwowany = true;
-    }
 
-    public void anulujRezerwację() {
-        this.czyZarezerwowany = false;
+    /**
+     * Zwraca tekstową reprezentację obiektu KlasaEkonomiczna.
+     *
+     * @return tekstowa reprezentacja obiektu KlasaEkonomiczna
+     */
+    @Override
+    public String toString() {
+        return "\n----------------------------------------------"+
+                "\nKlasaEkonomiczna" +
+                "\n----------------------------------------------"+
+                "\nnumerBiletu='" + getNumerBiletu() + '\'' +
+                "\ncena=" + getCena();
+
+
     }
 
     @Override
+    public String serializuj() {
+        return "{\"numerBiletu\":"+getNumerBiletu()+
+                ",\"cena\":"+getCena()+"\"}";
+    }
+}
+/**
+ * Klasa reprezentująca bilet klasy biznesowej.
+ */
+class KlasaBiznesowa extends Bilet implements  ISerializowalne{
+
+    private Boolean czyPosilek;
+    /**
+     * Konstruktor klasy KlasaBiznesowa.
+     *
+     * @param numerBiletu   numer biletu
+     * @param cena          cena biletu
+     * @param miejsce   numer miejsce
+     */
+    public KlasaBiznesowa(UUID numerBiletu, double cena, Miejsce miejsce,Boolean czyPosilek) {
+        super(numerBiletu, cena,miejsce);
+        this.czyPosilek = czyPosilek;
+    }
+
+    /**
+     * Pobranie informacji o posiłku
+     *
+     * @return bool
+     */
+    public boolean getPosilek(){
+        return czyPosilek;
+    }
+    /**
+     * Zwraca tekstową reprezentację obiektu KlasaBiznesowa.
+     *
+     * @return tekstowa reprezentacja obiektu KlasaBiznesowa
+     */
+    @Override
     public String toString() {
-        return "Bilet{" +
-                "numerBiletu='" + numerBiletu + '\'' +
-                ", cena=" + cena +
-                ", czyZarezerwowany=" + czyZarezerwowany +
-                '}';
+        return "\n----------------------------------------------"+
+                "\nKlasaBiznesowa" +
+                "\n----------------------------------------------"+
+                "\nnumerBiletu='" + getNumerBiletu() + '\'' +
+                "\ncena=" + getCena() +
+                "\nposiłek="+ czyPosilek;
+
+
     }
-}
-
-class KlasaEkonomiczna extends Bilet {
-    private String miejsce;
-
-    public KlasaEkonomiczna(String numerBiletu, double cena, String miejsce) {
-        super(numerBiletu, cena);
-        this.miejsce = miejsce;
+    @Override
+    public String serializuj() {
+        return "{\"numerBiletu\":"+getNumerBiletu()+
+                ",\"cena\":"+getCena()+
+                ",\"posilek\":"+getPosilek()+"\"}";
     }
-
-    public String getMiejsce() {
-        return miejsce;
-    }
-
-    public void setMiejsce(String miejsce) {
-        this.miejsce = miejsce;
-    }
-
-    // Dodatkowe metody dla biletów klasy ekonomicznej
-}
-
-class KlasaBiznesowa extends Bilet {
-    private int numerSiedzenia;
-
-    public KlasaBiznesowa(String numerBiletu, double cena, int numerSiedzenia) {
-        super(numerBiletu, cena);
-        this.numerSiedzenia = numerSiedzenia;
-    }
-
-    public int getNumerSiedzenia() {
-        return numerSiedzenia;
-    }
-
-    public void setNumerSiedzenia(int numerSiedzenia) {
-        this.numerSiedzenia = numerSiedzenia;
-    }
-
-    // Dodatkowe metody dla biletów klasy biznesowej
 }
