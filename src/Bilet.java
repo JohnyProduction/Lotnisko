@@ -62,7 +62,7 @@ class KlasaEkonomiczna extends Bilet implements ISerializowalne {
 
 
     /**
-     * Zwraca tekstową reprezentację obiektu KlasaEkonomiczna.
+     * Zwraca tekstową reprezentację obiektu KlasaEkonomiczna...
      *
      * @return tekstowa reprezentacja obiektu KlasaEkonomiczna
      */
