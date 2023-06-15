@@ -5,6 +5,7 @@ import java.util.List;
  * Klasa reprezentująca loty
  */
 public class Lot implements ISerializowalne{
+    private int idLotu;
     private String miejsceWylotu;
     private String miejscePrzylotu;
     private String data;
@@ -23,7 +24,8 @@ public class Lot implements ISerializowalne{
      * @param iloscRzedow ilosc rzędów w samolocie
      * @param iloscSiedzen ilosc siedzeń w rzędzie
      */
-    public Lot (String miejsceWylotu, String miejscePrzylotu, String data, String godzina, double cena, int iloscRzedow,int iloscSiedzen){
+    public Lot (int idLotu, String miejsceWylotu, String miejscePrzylotu, String data, String godzina, double cena, int iloscRzedow,int iloscSiedzen){
+        this.idLotu = idLotu;
         this.miejsceWylotu = miejsceWylotu;
         this.miejscePrzylotu = miejscePrzylotu;
         this.data = data;
@@ -33,11 +35,13 @@ public class Lot implements ISerializowalne{
         for(int rzad=1;rzad<=iloscRzedow;rzad++){
             for (int siedzenie=1;siedzenie<=iloscSiedzen;siedzenie++){
                 dostepneMiejsca.add(new Miejsce(siedzenie,rzad));
+
             }
         }
     }
-
-    public Lot (String miejsceWylotu, String miejscePrzylotu, String data, String godzina, double cena,List<Miejsce> listaMiejsc){
+/*
+    public Lot (int idLotu, String miejsceWylotu, String miejscePrzylotu, String data, String godzina, double cena,List<Miejsce> listaMiejsc){
+        this.idLotu= idLotu;
         this.miejsceWylotu = miejsceWylotu;
         this.miejscePrzylotu = miejscePrzylotu;
         this.data = data;
@@ -46,6 +50,16 @@ public class Lot implements ISerializowalne{
         this.dostepneMiejsca = listaMiejsc;
 
     }
+*/
+    /**
+     * Pobiera id lotu
+     *
+     * @return idLotu
+     */
+    public int getIdLotu() {
+        return idLotu;
+    }
+
     /**
      * Pobiera informacje na temat miejsca wylotu
      *
@@ -144,7 +158,8 @@ public class Lot implements ISerializowalne{
      */
     @Override
     public String toString(){
-        return "Miejsce wylotu: " +miejsceWylotu+
+        return "ID lotu: " +idLotu+
+                "\nMiejsce wylotu: " +miejsceWylotu+
                 "\n Miejsce przylotu: "+miejscePrzylotu+
                 "\n Data: "+data+
                 "\n Godzina:"+ godzina +

@@ -2,6 +2,7 @@
  * Klasa reprezentująca klienta
  */
 public class Klient implements Drukowalny,ISerializowalne {
+    private int idKlienta;
     private String imie;
     private String nazwisko;
     private String adres;
@@ -15,13 +16,22 @@ public class Klient implements Drukowalny,ISerializowalne {
      * @param adres adres klienta
      * @param numerTelefonu numer telefonu klienta
      */
-    public Klient (String imie, String nazwisko, String adres, String numerTelefonu){
+    public Klient (int idKlienta,String imie, String nazwisko, String adres, String numerTelefonu){
+        this.idKlienta = idKlienta;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.adres = adres;
         this.numerTelefonu = numerTelefonu;
     }
 
+    /**
+     * Pobiera id klienta
+     *
+     * @return idKlienta
+     */
+    public int getIdKlienta(){
+        return idKlienta;
+    }
     /**
      * Pobiera imie klienta
      *
@@ -70,6 +80,7 @@ public class Klient implements Drukowalny,ISerializowalne {
     @Override
     public void drukuj(){
         System.out.println("Klient :");
+        System.out.println("    Id Klienta: "+idKlienta);
         System.out.println("    Imie: "+imie);
         System.out.println("    Nazwisko: "+nazwisko);
         System.out.println("    Adres: "+adres);
@@ -79,7 +90,8 @@ public class Klient implements Drukowalny,ISerializowalne {
 
     @Override
     public String serializuj() {
-        return "{\"imie\":"+getImie()+
+        return "{\"idKlienta\":"+getIdKlienta() +
+                ",\"imie\":"+getImie()+
                 ",\"nazwisko\":"+getNazwisko()+
                 ",\"adres\":"+getAdres()+
                 ",\"numerTelefonu\":"+getNumerTelefonu()+"\"}";

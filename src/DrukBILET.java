@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 /**
  * Klasa reprezentująca druk biletu
  */
@@ -5,7 +7,7 @@
 public class DrukBILET implements Drukowalny{
     private Miejsce miejsce;
     private Lot lot;
-    private Bilet bilet;
+    private Optional<Bilet> bilet;
     private Klient klient;
 
     /**
@@ -15,7 +17,7 @@ public class DrukBILET implements Drukowalny{
      * @param lot informacje o locie
      * @param bilet informacje o bilecie
      */
-    public DrukBILET (Miejsce miejsce, Lot lot, Bilet bilet,Klient klient){
+    public DrukBILET (Miejsce miejsce, Lot lot, Optional<Bilet> bilet, Klient klient){
         this.miejsce =miejsce;
         this.bilet = bilet;
         this.lot = lot;

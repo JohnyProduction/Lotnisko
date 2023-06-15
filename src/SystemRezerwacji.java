@@ -89,13 +89,14 @@ class SystemRezerwacji extends Exception {
      * @param bilet Bilet do anulowania.
      * @throws UsuniecieRezerwacjiException Jeśli podany bilet nie istnieje w rekordach rezerwacji.
      */
-    public void anulujBilet(Bilet bilet) throws UsuniecieRezerwacjiException {
+    public void anulujBilet(Optional<Bilet> bilet) throws UsuniecieRezerwacjiException {
         if (!bilety.containsKey(bilet)) {
             throw new UsuniecieRezerwacjiException("Podany bilet nie istnieje.");
         }
+        /*
         bilety.get(bilet).anulujZarezerwowaneMiejsce(bilet.getMiejsce().getRzad(),bilet.getMiejsce().getNumer());
         bilety.remove(bilet);
-
+*/
     }
 
     /**
