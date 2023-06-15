@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * Klasa reprezentująca System rezerwacji
  */
-class SystemRezerwacji extends Exception implements Serializable {
+class SystemRezerwacji extends Exception {
     private Map<Bilet,Lot> bilety;
     /**
      * Konstruktor klasy SystemRezerwacji.
@@ -17,10 +17,10 @@ class SystemRezerwacji extends Exception implements Serializable {
      *
      * @param nazwaPliku Nazwa pliku do którego mają być zapisane loty.
      */
-    public void zapiszListeLotow(String nazwaPliku) {
+    public void zapiszListeLotow(String nazwaPliku, ArrayList<Lot> dostepneLoty) {
         try {
             FileWriter writer = new FileWriter(nazwaPliku);
-            for (Lot lot : bilety.values().stream().distinct().toList()) {
+            for (Lot lot : dostepneLoty.stream().distinct().toList()) {
                 writer.write(lot.toString());
                 writer.write("\n");
             }
@@ -57,7 +57,7 @@ class SystemRezerwacji extends Exception implements Serializable {
      * @param czyEkonomiczna Określa, czy bilet ma być w klasie ekonomicznej, czy nie.
      * @return Opcja zawierająca zarezerwowany bilet, jeśli miejsce jest dostępne, lub pusta Opcja w przeciwnym razie.
      */
-     public Optional<Bilet> zarezerwujBilet (Lot lot, Miejsce miejsce, Boolean czyEkonomiczna) {
+    public Optional<Bilet> zarezerwujBilet (Lot lot, Miejsce miejsce, Boolean czyEkonomiczna) {
         Boolean czyDostepne =lot.czyDostepneMiejsce(miejsce.getRzad(),miejsce.getNumer());
         if(czyDostepne == false) {
             return Optional.empty();
@@ -65,7 +65,7 @@ class SystemRezerwacji extends Exception implements Serializable {
         lot.zarezerwujMiejsce(miejsce.getRzad(),miejsce.getNumer());
         Bilet bilet;
         if(czyEkonomiczna){
-             bilet = new KlasaEkonomiczna(UUID.randomUUID(),420 , miejsce);
+            bilet = new KlasaEkonomiczna(UUID.randomUUID(),420 , miejsce);
         }
         else{
             bilet = new KlasaBiznesowa(UUID.randomUUID(),2137 , miejsce, true);
@@ -78,8 +78,8 @@ class SystemRezerwacji extends Exception implements Serializable {
     /**
      * Wyświetla informacje o wszystkich biletach w systemie.
      */
-    public void wyswietlBilety() {
-        for (Bilet bilet : bilety.keySet()) {
+    public void wyswietlBilety(List<Optional<Bilet>> bilety) {
+        for (Optional<Bilet> bilet : bilety.stream().distinct().toList()) {
             System.out.println(bilet.toString());
         }
     }
@@ -103,8 +103,8 @@ class SystemRezerwacji extends Exception implements Serializable {
      * Wyświetla dostępne loty.
      * Drukuje informacje o każdym unikalnym locie obecnym w rekordach rezerwacji.
      */
-    public void wyswietlDostępneLoty() {
-        for (Lot lot : bilety.values().stream().distinct().toList()) {
+    public void wyswietlDostępneLoty( ArrayList<Lot> dostepneLoty) {
+        for (Lot lot : dostepneLoty.stream().distinct().toList()) {
             System.out.println(lot.toString());
         }
     }

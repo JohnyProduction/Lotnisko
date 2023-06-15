@@ -200,18 +200,22 @@ public class Main {
                     }
                     break;
                 case 5:
-                    systemRezerwacji.wyswietlDostępneLoty();
+                    systemRezerwacji.wyswietlDostępneLoty((ArrayList<Lot>) dostepneLoty);
+                    number=0;
                     break;
                 case 6:
-                    systemRezerwacji.wyswietlBilety();
+                    systemRezerwacji.wyswietlBilety(bilety);
+                    number=0;
                     break;
                 case 7:
                     System.out.println("Podaj nazwę pliku (razem z formatem txt): ");
                     nazwaPliku = in.nextLine();
-                    systemRezerwacji.zapiszListeLotow(nazwaPliku);
+                    systemRezerwacji.zapiszListeLotow(nazwaPliku, (ArrayList<Lot>) dostepneLoty);
+                    number = 0;
                     break;
                 case 8:
                     systemRezerwacji.odczytajListeLotow(nazwaPliku);
+                    number= 0;
                     break;
                 case 9:
                     flag = true;
