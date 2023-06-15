@@ -75,6 +75,8 @@ class KlasaEkonomiczna extends Bilet implements ISerializowalne {
                 "\ncena=" + getCena();
 
 
+
+
     }
 
     @Override
