@@ -164,7 +164,7 @@ public class Lot implements ISerializowalne, Serializable {
                 "\n Miejsce przylotu: "+miejscePrzylotu+
                 "\n Data: "+data+
                 "\n Godzina:"+ godzina +
-                "\n Cena:" + cena;
+                "\n Cena:" + cena + "\n";
     }
 
     @Override
