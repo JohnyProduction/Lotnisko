@@ -98,4 +98,10 @@ public class Klient implements Drukowalny,ISerializowalne, Serializable {
                 ",\"adres\":"+getAdres()+
                 ",\"numerTelefonu\":"+getNumerTelefonu()+"\"}";
     }
+
+    @Override
+    public String toString(){
+        return "ID klienta: " +idKlienta+
+                "\n";
+    }
 }

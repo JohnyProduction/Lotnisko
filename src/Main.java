@@ -80,6 +80,7 @@ public class Main {
                 double cena;
                 int iloscRzedow;
                 int iloscSiedzen;
+                Lot wybranyLot = null;
 
                 System.out.flush();
                 System.out.println("Podaj miejsce startowe: ");
@@ -125,10 +126,20 @@ public class Main {
                 }
                 System.out.println("Wybierz id lotu:");
                 int numerLotu = in.nextInt();
-                lot.getDostepneMiejsca();
+                //lot.getDostepneMiejsca();
+
+                wybranyLot = null; // Initialize with null
+                for (Lot lotIt : dostepneLoty) {
+                    if (lotIt.getIdLotu() == numerLotu) {
+                        wybranyLot = lotIt;
+                    }
+                }
+                if (wybranyLot == null) {
+                    wybranyLot = dostepneLoty.get(0);
+                }
 
                 System.out.println("Dostępne miejsca:");
-                for (Miejsce miejsce : dostepneMiejsca) {
+                for (Miejsce miejsce : wybranyLot.getDostepneMiejsca()) {
                     System.out.println("Rząd: " + miejsce.getRzad() + ", Numer: " + miejsce.getNumer());
                 }
                 System.out.println("Podaj rząd: ");
