@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Klasa reprezentująca klienta
  */
-public class Klient implements Drukowalny,ISerializowalne {
+public class Klient implements Drukowalny,ISerializowalne, Serializable {
     private int idKlienta;
     private String imie;
     private String nazwisko;
@@ -95,5 +97,11 @@ public class Klient implements Drukowalny,ISerializowalne {
                 ",\"nazwisko\":"+getNazwisko()+
                 ",\"adres\":"+getAdres()+
                 ",\"numerTelefonu\":"+getNumerTelefonu()+"\"}";
+    }
+
+    @Override
+    public String toString(){
+        return "ID klienta: " +idKlienta+
+                "\n";
     }
 }
