@@ -17,7 +17,7 @@ public class Main {
         List<Lot> dostepneLoty = new ArrayList<>();
         List<Klient> klienci =new ArrayList<>();
         List<SystemRezerwacji> rezerwacje  = new ArrayList<>();
-        List<Miejsce> dostepneMiejsca = lot.getDostepneMiejsca();
+        List<Miejsce> dostepneMiejsca = new ArrayList<>();
 
         int idKlienta = 0;
         int idLotu = 0;

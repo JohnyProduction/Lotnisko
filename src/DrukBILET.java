@@ -6,7 +6,7 @@ import java.util.Optional;
  */
 
 public class DrukBILET implements Drukowalny, Serializable {
-    private Miejsce miejsce;
+    private Miejsce miejsce;gi
     private Lot lot;
     private Optional<Bilet> bilet;
     private Klient klient;
